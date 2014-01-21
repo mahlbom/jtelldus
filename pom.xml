@@ -20,9 +20,16 @@
 	  <dependency>
 	    <groupId>com.sun</groupId>
 	    <artifactId>jni</artifactId>
-	    <version>3.2.7</version>
+	    <version>4.0.0</version>
 	    <scope>system</scope>
-	    <systemPath>${project.basedir}/lib/jna-3.2.7.jar</systemPath>
-	  </dependency>   
+	    <systemPath>${project.basedir}/lib/jna-4.0.0.jar</systemPath>
+	  </dependency>
+	  <dependency>
+	    <groupId>com.sun</groupId>
+	    <artifactId>jni-platform</artifactId>
+	    <version>4.0.0</version>
+	    <scope>system</scope>
+	    <systemPath>${project.basedir}/lib/jna-platform-4.0.0.jar</systemPath>
+	  </dependency>  
 </dependencies>
 </project>
