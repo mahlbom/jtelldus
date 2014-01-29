@@ -13,7 +13,7 @@ public class Sensor {
 	private String model;
 	private int id;
 	private int dataTypes;
-	private Library library;
+	private static Library library;
 	
 	public String getProtocol() {
 		return protocol;
@@ -47,13 +47,12 @@ public class Sensor {
 		this.dataTypes = dataTypes;
 	}
 
-	public Sensor setLibrary(Library library) {
-		this.library = library;
-		return this;
+	public static void setLibrary(Library library) {
+		Sensor.library = library;
 	}
 
 	public int startListening(final SensorCallback callback) {
-		return startListening(callback, this, this.library);
+		return startListening(callback, this, Sensor.library);
 	}
 	
 	public static int startListening(final SensorCallback callback, Object object, Library library) {
