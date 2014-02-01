@@ -14,6 +14,7 @@ public class TellstickException extends Exception {
 	}
 	
 	public TellstickException(TelldusDevice device, ErrorCode errorCode) {
+		super(errorCode.toString());
 		this.device = device;
 		this.errorCode  = errorCode;
 	}

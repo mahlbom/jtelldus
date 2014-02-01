@@ -14,6 +14,7 @@ import se.egeback.jtelldus.model.Sensor;
 import se.egeback.jtelldus.model.TelldusDevice;
 
 import com.sun.jna.Native;
+import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
 public class JTelldus {
@@ -114,5 +115,11 @@ public class JTelldus {
 	
 	public void removeSensorEvent(int callbackId) {
 		Sensor.stopListening(callbackId, instance);
+	}
+	
+	public static String getString(Pointer pointer, Library instance) {
+		String string = pointer.getString(0);
+		instance.tdReleaseString(pointer);
+		return string;
 	}
 }

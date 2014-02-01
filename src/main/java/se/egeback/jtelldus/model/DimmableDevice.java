@@ -1,6 +1,7 @@
 package se.egeback.jtelldus.model;
 
 import se.egeback.jtelldus.ErrorCode;
+import se.egeback.jtelldus.JTelldus;
 import se.egeback.jtelldus.Library;
 import se.egeback.jtelldus.exception.TellstickException;
 
@@ -23,7 +24,7 @@ public class DimmableDevice extends Device {
     }
     
     public int getDimValue() {
-    	String value = library.tdLastSentValue(getId());
+    	String value = JTelldus.getString(library.tdLastSentValue(getId()), library);
     	try {
     		return Integer.parseInt(value);
     	} catch (Exception e) {

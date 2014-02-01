@@ -50,7 +50,7 @@ public interface Library extends com.sun.jna.Library {
     }
     
     // TELLSTICK_API void WINAPI tdReleaseString(char *string);
-    public void tdReleaseString(String string);
+    public void tdReleaseString(Pointer string);
 
     
     // TELLSTICK_API int WINAPI tdTurnOn(int intDeviceId);
@@ -84,7 +84,7 @@ public interface Library extends com.sun.jna.Library {
     public int tdLastSentCommand( int intDeviceId, int methodsSupported );
     
     // TELLSTICK_API char *WINAPI tdLastSentValue (int intDeviceId)
-    public String tdLastSentValue(int intDeviceId);
+    public Pointer tdLastSentValue(int intDeviceId);
 
     // TELLSTICK_API int WINAPI tdGetNumberOfDevices();
     public int tdGetNumberOfDevices();
@@ -96,28 +96,28 @@ public interface Library extends com.sun.jna.Library {
     public int tdGetDeviceType(int intDeviceId);
 
     // TELLSTICK_API char * WINAPI tdGetErrorString(int intErrorNo);
-    public String tdGetErrorString(int intErrorNo);
+    public Pointer tdGetErrorString(int intErrorNo);
 
     // TELLSTICK_API char * WINAPI tdGetName(int intDeviceId);
-    public String tdGetName(int intDeviceId);
+    public Pointer tdGetName(int intDeviceId);
 
     // TELLSTICK_API bool WINAPI tdSetName(int intDeviceId, const char* chNewName);
     public boolean tdSetName(int intDeviceId, String chNewName);
 
     // TELLSTICK_API char * WINAPI tdGetProtocol(int intDeviceId);
-    public String tdGetProtocol(int intDeviceId);
+    public Pointer tdGetProtocol(int intDeviceId);
 
     // TELLSTICK_API bool WINAPI tdSetProtocol(int intDeviceId, const char* strProtocol);
     public boolean tdSetProtocol(int intDeviceId, String strProtocol);
 
     // TELLSTICK_API char * WINAPI tdGetModel(int intDeviceId);
-    public String tdGetModel(int intDeviceId);
+    public Pointer tdGetModel(int intDeviceId);
 
     // TELLSTICK_API bool WINAPI tdSetModel(int intDeviceId, const char *intModel);
     public boolean tdSetModel(int intDeviceId, String intModel);
 
     // TELLSTICK_API char * WINAPI tdGetDeviceParameter(int intDeviceId, const char *strName, const char *defaultValue);
-    public String tdGetDeviceParameter(int intDeviceId, String strName, String defaultValue);
+    public Pointer tdGetDeviceParameter(int intDeviceId, String strName, String defaultValue);
 
     // TELLSTICK_API bool WINAPI tdSetDeviceParameter(int intDeviceId, const char *strName, const char* strValue);
     public boolean tdSetDeviceParameter(int intDeviceId, String strName, String strValue);

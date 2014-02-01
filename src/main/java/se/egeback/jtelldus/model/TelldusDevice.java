@@ -1,12 +1,16 @@
 package se.egeback.jtelldus.model;
 
+import org.apache.log4j.Logger;
+
 import com.sun.jna.Pointer;
 
+import se.egeback.jtelldus.JTelldus;
 import se.egeback.jtelldus.Library;
 import se.egeback.jtelldus.Method;
 import se.egeback.jtelldus.callback.DeviceCallback;
 
 public abstract class TelldusDevice {
+    private static Logger logger = Logger.getLogger(TelldusDevice.class);
 	protected static Library library;
 	
     protected int deviceId;
@@ -88,24 +92,27 @@ public abstract class TelldusDevice {
 	}
 	
 	protected void init(int deviceId) {
+		logger.debug("Init device " + deviceId);
         this.deviceId = deviceId;
         
         // Get name
-        this.name = library.tdGetName(deviceId);
-        library.tdReleaseString(name);
+        logger.trace("Get name for " + deviceId);
+        this.name = JTelldus.getString(library.tdGetName(deviceId), library);
 
         // Get model
-        this.model = library.tdGetModel(deviceId);
-        library.tdReleaseString(model);
+        logger.trace("Get model for " + deviceId);
+        this.model = JTelldus.getString(library.tdGetModel(deviceId), library);
         
         // Get protocol
-        this.protocol = library.tdGetProtocol(deviceId);
-        library.tdReleaseString(protocol);
+        logger.trace("Get protocol for " + deviceId);
+        this.protocol = JTelldus.getString(library.tdGetProtocol(deviceId), library);
         
         // Get last status ( EMULATED 2 way communication ) Works with TS DUO
+        logger.trace("Get last sent command for " + deviceId);
         this.status = library.tdLastSentCommand(deviceId, getSupportedMethods());
         
         // Get the device type.
+        logger.trace("Get device type " + deviceId);
         this.deviceType = library.tdGetDeviceType(deviceId);
         
 	}
