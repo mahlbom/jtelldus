@@ -3,6 +3,8 @@ package se.egeback.jtelldus;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import se.egeback.jtelldus.callback.SensorCallback;
 import se.egeback.jtelldus.model.BellDevice;
 import se.egeback.jtelldus.model.Device;
@@ -18,6 +20,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
 public class JTelldus {
+	private static Logger logger = Logger.getLogger(JTelldus.class);
 	private Library instance;
 	
 	public JTelldus() {
@@ -29,11 +32,13 @@ public class JTelldus {
 	}
 	
 	public void init() {
-		instance = createLibraryInstance();
+		init(createLibraryInstance());
 	}
 	
 	protected void init(Library library) {
-		instance = createLibraryInstance();
+		instance = library;
+		TelldusDevice.setLibrary(library);
+		Sensor.setLibrary(library);
 	}
 	
 	public void close() {
@@ -54,8 +59,17 @@ public class JTelldus {
 			Sensor sensor = new Sensor();
 			sensor.setId(id.getValue());
 			sensor.setDataTypes(dataTypes.getValue());
-			sensor.setModel(new String(model));
-			sensor.setProtocol(new String(protocol));
+			sensor.setModel(new String(model).trim());
+			sensor.setProtocol(new String(protocol).trim());
+			logger.trace("{\"protocol\":\"" + sensor.getProtocol() + "\",\"model\":\"" + sensor.getModel() + "\",\"id\":" + id.getValue() + ",\"dataTypes\":" + dataTypes.getValue() + "}");
+			if((dataTypes.getValue() & Library.TELLSTICK_TEMPERATURE) != 0) {
+				sensor.getTemperature();
+				logger.trace("Getting temperature for sensor " + id.getValue() + " " + sensor.getTemperature());
+			}
+			if((dataTypes.getValue() & Library.TELLSTICK_HUMIDITY) != 0) {
+				sensor.getHumidity();
+				logger.trace("Getting humidity for sensor " + id.getValue() + " " + sensor.getHumidity());
+			}
 			sensors.add(sensor);
 		}
 		return sensors;
@@ -74,21 +88,26 @@ public class JTelldus {
         	return new GroupDevice(deviceId);
         }
         
+        TelldusDevice device = null;
         // Now single action based.
         if(type == Library.TELLSTICK_TYPE_SCENE){
-        	return new SceneDevice(deviceId);
+        	device = new SceneDevice(deviceId);
         } else if ((methods & Library.TELLSTICK_BELL) > 0) {
-        	return new BellDevice(deviceId);
+        	device = new BellDevice(deviceId);
         } else if((methods & Library.TELLSTICK_DIM) > 0){
-        	return new DimmableDevice(deviceId);
+        	device = new DimmableDevice(deviceId);
         } else if((methods & Library.TELLSTICK_UP) > 0 && (methods & Library.TELLSTICK_DOWN) > 0 && (methods & Library.TELLSTICK_STOP) > 0){
-        	return new ScreenDevice(deviceId);
+        	device = new ScreenDevice(deviceId);
         } else if ((methods & Library.TELLSTICK_TURNON) > 0 && (methods & Library.TELLSTICK_TURNOFF) > 0){
-        	return new Device(deviceId);
+        	device = new Device(deviceId);
         } else if((methods & Library.TELLSTICK_EXECUTE) > 0){
-        	return new SceneDevice(deviceId);
+        	device = new SceneDevice(deviceId);
         }
-        return null;
+        if(device==null)
+        	return null;
+        
+        device.setSupportedMethods(supportedMethods);
+        return device;
 	}
 	
 	public ArrayList<TelldusDevice> getDevices() {
@@ -105,7 +124,6 @@ public class JTelldus {
 	private Library createLibraryInstance() {
 		Library instance = (Library) Native.loadLibrary("libtelldus-core.so.2", Library.class);
 		instance.tdInit();
-		TelldusDevice.setLibrary(instance);
 		return instance;
 	}
 	

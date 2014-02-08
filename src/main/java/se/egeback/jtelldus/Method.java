@@ -1,24 +1,33 @@
 package se.egeback.jtelldus;
+
+import java.util.ArrayList;
+import java.util.List;
    public enum Method {
-	   TELLSTICK_TURNON(1),
-	   TELLSTICK_TURNOFF(2),
-	   TELLSTICK_BELL(4),
-	   TELLSTICK_TOGGLE(8),
-	   TELLSTICK_DIM(16),
-	   TELLSTICK_LEARN(32),
-	   TELLSTICK_EXECUTE(64),
-	   TELLSTICK_UP(128),
-	   TELLSTICK_DOWN(256),
-	   TELLSTICK_STOP(512);
+	   TELLSTICK_TURNON(1, "Turn on"),
+	   TELLSTICK_TURNOFF(2, "Turn off"),
+	   TELLSTICK_BELL(4, "Bell"),
+	   TELLSTICK_TOGGLE(8, "Toggle"),
+	   TELLSTICK_DIM(16, "Dim"),
+	   TELLSTICK_LEARN(32, "Learn"),
+	   TELLSTICK_EXECUTE(64, "Execute"),
+	   TELLSTICK_UP(128, "Up"),
+	   TELLSTICK_DOWN(256, "Down"),
+	   TELLSTICK_STOP(512, "Stop");
 	   
    	private int value;
+   	private String description;
 	
    	public int getValue() {
    		return value;
    	}
    	
-   	private Method(int value) {
+   	public String toString() {
+   		return description;
+   	}
+   	
+   	private Method(int value, String description) {
    		this.value = value;
+   		this.description = description;
    	}
    	
    	public static Method parse(int value) {
@@ -27,6 +36,17 @@ package se.egeback.jtelldus;
    				return method;
    			}
    		}
-			return null;
+		return null;
+   	}
+   	
+   	public static Method[] parseMultiple(int value) {
+   		List<Method> methods = new ArrayList<Method>();
+   		
+   		for(Method method:Method.values()) {
+   			if((value & method.value)>0) {
+   				methods.add(method);
+   			}
+   		}
+   		return methods.toArray(new Method[0]);
    	}
 }

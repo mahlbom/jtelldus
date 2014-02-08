@@ -40,7 +40,7 @@ public class Device extends TelldusDevice {
      * @return true if device is on.
      */
     public boolean isOn(){
-            if ((Library.TELLSTICK_TURNON & this.getStatus()) > 0) return true;
+            if ((Library.TELLSTICK_TURNON & status) > 0) return true;
             else return false;
     }
 }

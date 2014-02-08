@@ -2,18 +2,26 @@ package se.egeback.jtelldus.model;
 
 import java.util.Calendar;
 
+import org.apache.log4j.Logger;
+
 import se.egeback.jtelldus.Library;
 import se.egeback.jtelldus.SensorValueType;
 import se.egeback.jtelldus.callback.SensorCallback;
 
+import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.IntByReference;
 
 public class Sensor {
+	private static Logger logger = Logger.getLogger(Sensor.class);
+
 	private String protocol;
 	private String model;
 	private int id;
 	private int dataTypes;
 	private static Library library;
+	private SensorValue temperature;
+	private SensorValue humidity;
 	
 	public String getProtocol() {
 		return protocol;
@@ -83,5 +91,41 @@ public class Sensor {
 	
 	public static void stopListening(int callbackId, Library library){
 		library.tdUnregisterCallback(callbackId);
+	}
+	
+	public SensorValue getTemperature() {
+		if(this.temperature==null) {
+			temperature = getSensorValue(protocol, model, id, Library.TELLSTICK_TEMPERATURE);
+		}
+		
+		return temperature;
+	}
+	
+	public static SensorValue getSensorValue(String protocol, String model, int id, int dataType) {
+		byte[] value = new byte[20]; 
+		IntByReference timestamp = new IntByReference();
+		
+		if(library.tdSensorValue(protocol.getBytes(), model.getBytes(), id, dataType, value, 20, timestamp) == Library.TELLSTICK_SUCCESS) {
+			long timestampvalue = (long)timestamp.getValue() * 1000;
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(timestampvalue);
+			
+			try {
+				if(dataType==Library.TELLSTICK_HUMIDITY)
+					return new SensorValue(Integer.parseInt(Native.toString(value)), cal);
+				else
+					return new SensorValue(Double.parseDouble(Native.toString(value)), cal);
+			} catch (Exception e) {
+				logger.error("Could not parse sensor value" + Native.toString(value));
+			}
+		}
+		return null;
+	}
+	
+	public SensorValue getHumidity() {
+		if(this.humidity==null) {
+			humidity = getSensorValue(protocol, model, id, Library.TELLSTICK_HUMIDITY);
+		}
+		return humidity;
 	}
 }

@@ -25,8 +25,8 @@ public abstract class TelldusDevice {
         this.supportedMethods = supportedMethods;
     }
 
-	public int getSupportedMethods() {
-		return supportedMethods; 
+	public Method[] getSupportedMethods() {
+		return Method.parseMultiple(supportedMethods); 
 	}
 	
 	public int getId() {
@@ -65,12 +65,12 @@ public abstract class TelldusDevice {
 		this.protocol = protocol;
 	}
 
-	public int getStatus() {
-		return status;
+	public Method getStatus() {
+		return Method.parse(status);
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus(Method status) {
+		this.status = status.getValue();
 	}
 
 	public int getDeviceType() {
@@ -109,7 +109,7 @@ public abstract class TelldusDevice {
         
         // Get last status ( EMULATED 2 way communication ) Works with TS DUO
         logger.trace("Get last sent command for " + deviceId);
-        this.status = library.tdLastSentCommand(deviceId, getSupportedMethods());
+        this.status = library.tdLastSentCommand(deviceId, supportedMethods);
         
         // Get the device type.
         logger.trace("Get device type " + deviceId);
