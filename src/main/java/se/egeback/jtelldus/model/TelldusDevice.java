@@ -88,7 +88,7 @@ public abstract class TelldusDevice {
 	private int deviceType;
 
 	public static void setLibrary(Library library) {
-		Device.library = library;
+		Jdevice.library = library;
 	}
 	
 	protected void init(int deviceId) {
@@ -125,7 +125,7 @@ public abstract class TelldusDevice {
 	}
 	
 	public int startListening(final DeviceCallback callback) {
-		return startListening(callback, this, Device.library);
+		return startListening(callback, this, Jdevice.library);
 	}
 	
 	public static int startListening(final DeviceCallback callback, Object object, Library library) {

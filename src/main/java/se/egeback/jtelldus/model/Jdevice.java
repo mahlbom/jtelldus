@@ -6,10 +6,10 @@ import se.egeback.jtelldus.ErrorCode;
 import se.egeback.jtelldus.Library;
 import se.egeback.jtelldus.exception.TellstickException;
 
-public class Device extends TelldusDevice {
+public class Jdevice extends TelldusDevice {
     private static Logger logger = Logger.getLogger(TelldusDevice.class);
 
-	public Device(int deviceId) {
+	public Jdevice(int deviceId) {
 		this.deviceId = deviceId;
 		this.init(deviceId);
 	}

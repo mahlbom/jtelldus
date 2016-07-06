@@ -5,7 +5,7 @@ import se.egeback.jtelldus.JTelldus;
 import se.egeback.jtelldus.Library;
 import se.egeback.jtelldus.exception.TellstickException;
 
-public class DimmableDevice extends Device {
+public class DimmableDevice extends Jdevice {
 	
 	public DimmableDevice(int deviceId) {
 		super(deviceId);

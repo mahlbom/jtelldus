@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 import se.egeback.jtelldus.callback.SensorCallback;
 import se.egeback.jtelldus.model.BellDevice;
-import se.egeback.jtelldus.model.Device;
+import se.egeback.jtelldus.model.Jdevice;
 import se.egeback.jtelldus.model.DimmableDevice;
 import se.egeback.jtelldus.model.GroupDevice;
 import se.egeback.jtelldus.model.SceneDevice;
@@ -99,7 +99,7 @@ public class JTelldus {
         } else if((methods & Library.TELLSTICK_UP) > 0 && (methods & Library.TELLSTICK_DOWN) > 0 && (methods & Library.TELLSTICK_STOP) > 0){
         	device = new ScreenDevice(deviceId);
         } else if ((methods & Library.TELLSTICK_TURNON) > 0 && (methods & Library.TELLSTICK_TURNOFF) > 0){
-        	device = new Device(deviceId);
+        	device = new Jdevice(deviceId);
         } else if((methods & Library.TELLSTICK_EXECUTE) > 0){
         	device = new SceneDevice(deviceId);
         }
