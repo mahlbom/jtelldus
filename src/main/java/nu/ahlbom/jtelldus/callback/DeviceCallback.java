@@ -1,6 +1,6 @@
-package se.egeback.jtelldus.callback;
+package nu.ahlbom.jtelldus.callback;
 
-import se.egeback.jtelldus.Method;
+import nu.ahlbom.jtelldus.Method;
 
 public interface DeviceCallback {
 	public void event(int deviceId, Method method, String data, int callbackId);

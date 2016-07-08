@@ -1,4 +1,4 @@
-package se.egeback.jtelldus;
+package nu.ahlbom.jtelldus;
 
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;

@@ -1,7 +1,7 @@
-package se.egeback.jtelldus.exception;
+package nu.ahlbom.jtelldus.exception;
 
-import se.egeback.jtelldus.ErrorCode;
-import se.egeback.jtelldus.model.TelldusDevice;
+import nu.ahlbom.jtelldus.ErrorCode;
+import nu.ahlbom.jtelldus.model.TelldusDevice;
 
 public class TellstickException extends Exception {
 

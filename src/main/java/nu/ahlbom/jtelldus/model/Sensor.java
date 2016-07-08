@@ -1,12 +1,12 @@
-package se.egeback.jtelldus.model;
+package nu.ahlbom.jtelldus.model;
 
 import java.util.Calendar;
 
-import org.apache.log4j.Logger;
+import nu.ahlbom.jtelldus.Library;
+import nu.ahlbom.jtelldus.SensorValueType;
+import nu.ahlbom.jtelldus.callback.SensorCallback;
 
-import se.egeback.jtelldus.Library;
-import se.egeback.jtelldus.SensorValueType;
-import se.egeback.jtelldus.callback.SensorCallback;
+import org.apache.log4j.Logger;
 
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;

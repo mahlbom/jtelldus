@@ -1,9 +1,9 @@
-package se.egeback.jtelldus.model;
+package nu.ahlbom.jtelldus.model;
 
-import se.egeback.jtelldus.ErrorCode;
-import se.egeback.jtelldus.JTelldus;
-import se.egeback.jtelldus.Library;
-import se.egeback.jtelldus.exception.TellstickException;
+import nu.ahlbom.jtelldus.ErrorCode;
+import nu.ahlbom.jtelldus.JTelldus;
+import nu.ahlbom.jtelldus.Library;
+import nu.ahlbom.jtelldus.exception.TellstickException;
 
 public class DimmableDevice extends Jdevice {
 	

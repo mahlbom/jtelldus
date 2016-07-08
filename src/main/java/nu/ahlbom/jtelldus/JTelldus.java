@@ -1,19 +1,19 @@
-package se.egeback.jtelldus;
+package nu.ahlbom.jtelldus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import nu.ahlbom.jtelldus.callback.SensorCallback;
+import nu.ahlbom.jtelldus.model.BellDevice;
+import nu.ahlbom.jtelldus.model.DimmableDevice;
+import nu.ahlbom.jtelldus.model.GroupDevice;
+import nu.ahlbom.jtelldus.model.Jdevice;
+import nu.ahlbom.jtelldus.model.SceneDevice;
+import nu.ahlbom.jtelldus.model.ScreenDevice;
+import nu.ahlbom.jtelldus.model.Sensor;
+import nu.ahlbom.jtelldus.model.TelldusDevice;
 
-import se.egeback.jtelldus.callback.SensorCallback;
-import se.egeback.jtelldus.model.BellDevice;
-import se.egeback.jtelldus.model.Jdevice;
-import se.egeback.jtelldus.model.DimmableDevice;
-import se.egeback.jtelldus.model.GroupDevice;
-import se.egeback.jtelldus.model.SceneDevice;
-import se.egeback.jtelldus.model.ScreenDevice;
-import se.egeback.jtelldus.model.Sensor;
-import se.egeback.jtelldus.model.TelldusDevice;
+import org.apache.log4j.Logger;
 
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;

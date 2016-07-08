@@ -1,4 +1,4 @@
-package se.egeback.jtelldus.model;
+package nu.ahlbom.jtelldus.model;
 
 public class GroupDevice extends TelldusDevice {
 	

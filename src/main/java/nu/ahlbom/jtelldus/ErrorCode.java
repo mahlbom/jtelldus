@@ -1,4 +1,4 @@
-package se.egeback.jtelldus;
+package nu.ahlbom.jtelldus;
    public enum ErrorCode {
     	TELLSTICK_SUCCESS(0, "Success"),
         TELLSTICK_ERROR_NOT_FOUND(-1, "Not found"),

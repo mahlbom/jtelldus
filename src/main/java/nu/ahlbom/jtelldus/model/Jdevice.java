@@ -1,10 +1,10 @@
-package se.egeback.jtelldus.model;
+package nu.ahlbom.jtelldus.model;
+
+import nu.ahlbom.jtelldus.ErrorCode;
+import nu.ahlbom.jtelldus.Library;
+import nu.ahlbom.jtelldus.exception.TellstickException;
 
 import org.apache.log4j.Logger;
-
-import se.egeback.jtelldus.ErrorCode;
-import se.egeback.jtelldus.Library;
-import se.egeback.jtelldus.exception.TellstickException;
 
 public class Jdevice extends TelldusDevice {
     private static Logger logger = Logger.getLogger(TelldusDevice.class);

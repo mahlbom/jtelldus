@@ -1,4 +1,4 @@
-package se.egeback.jtelldus;
+package nu.ahlbom.jtelldus;
 public enum ChangeType {
     	TELLSTICK_CHANGE_NAME(1),
     	TELLSTICK_CHANGE_PROTOCOL(2),

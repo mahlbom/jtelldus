@@ -1,4 +1,4 @@
-package se.egeback.jtelldus;
+package nu.ahlbom.jtelldus;
 
 import java.util.ArrayList;
 import java.util.List;

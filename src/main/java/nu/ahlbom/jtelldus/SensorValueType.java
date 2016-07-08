@@ -1,4 +1,4 @@
-package se.egeback.jtelldus;
+package nu.ahlbom.jtelldus;
 public enum SensorValueType {
 	TELLSTICK_TEMPERATURE(1),
 	TELLSTICK_HUMIDITY(2),
