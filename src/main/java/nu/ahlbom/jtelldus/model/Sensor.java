@@ -2,18 +2,19 @@ package nu.ahlbom.jtelldus.model;
 
 import java.util.Calendar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import nu.ahlbom.jtelldus.Library;
 import nu.ahlbom.jtelldus.SensorValueType;
 import nu.ahlbom.jtelldus.callback.SensorCallback;
-
-import org.apache.log4j.Logger;
 
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
 public class Sensor {
-	private static Logger logger = Logger.getLogger(Sensor.class);
+	private static Logger logger = LoggerFactory.getLogger(Sensor.class);
 
 	private String protocol;
 	private String model;

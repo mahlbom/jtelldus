@@ -1,16 +1,17 @@
 package nu.ahlbom.jtelldus.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import nu.ahlbom.jtelldus.JTelldus;
 import nu.ahlbom.jtelldus.Library;
 import nu.ahlbom.jtelldus.Method;
 import nu.ahlbom.jtelldus.callback.DeviceCallback;
 
-import org.apache.log4j.Logger;
-
 import com.sun.jna.Pointer;
 
 public abstract class TelldusDevice {
-    private static Logger logger = Logger.getLogger(TelldusDevice.class);
+    private static Logger logger = LoggerFactory.getLogger(TelldusDevice.class);
 	protected static Library library;
 	
     protected int deviceId;

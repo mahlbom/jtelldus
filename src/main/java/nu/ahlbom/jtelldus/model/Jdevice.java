@@ -4,10 +4,11 @@ import nu.ahlbom.jtelldus.ErrorCode;
 import nu.ahlbom.jtelldus.Library;
 import nu.ahlbom.jtelldus.exception.TellstickException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Jdevice extends TelldusDevice {
-    private static Logger logger = Logger.getLogger(TelldusDevice.class);
+    private static Logger logger = LoggerFactory.getLogger(TelldusDevice.class);
 
 	public Jdevice(int deviceId) {
 		this.deviceId = deviceId;

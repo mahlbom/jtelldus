@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nu.ahlbom</groupId>
 	<artifactId>jtelldus</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -42,7 +42,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>1.5</version>
@@ -56,7 +56,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			 -->
 		</plugins>
 	</build>
 	<dependencies>
@@ -74,10 +73,10 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/jna-platform-4.0.0.jar</systemPath>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.12</version>
+			<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.4</version>
 		</dependency>
 	</dependencies>
 	<scm>
@@ -91,4 +90,14 @@
 	<description>Java project for controlling Tellstick devices. 
 
 This project is depending on Telldus-core package.</description>
+<distributionManagement>
+		<snapshotRepository>
+			<id>deployment-nexus</id>
+			<url>http://ci:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>deployment-nexus</id>
+			<url>http://ci:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
 </project>

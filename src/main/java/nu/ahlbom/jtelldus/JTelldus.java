@@ -3,6 +3,9 @@ package nu.ahlbom.jtelldus;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import nu.ahlbom.jtelldus.callback.SensorCallback;
 import nu.ahlbom.jtelldus.model.BellDevice;
 import nu.ahlbom.jtelldus.model.DimmableDevice;
@@ -13,14 +16,12 @@ import nu.ahlbom.jtelldus.model.ScreenDevice;
 import nu.ahlbom.jtelldus.model.Sensor;
 import nu.ahlbom.jtelldus.model.TelldusDevice;
 
-import org.apache.log4j.Logger;
-
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
 public class JTelldus {
-	private static Logger logger = Logger.getLogger(JTelldus.class);
+	private static Logger logger = LoggerFactory.getLogger(JTelldus.class);
 	private Library instance;
 	
 	public JTelldus() {
